@@ -45,3 +45,42 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Quartus II Project folder
+/db
+/incremental_db
+/output_files/output_files
+/simulation
+/timing
+
+# Quartus II Report files
+*.done
+*.qarlog
+*.qsmg
+*.rpt
+*.smsg
+*.summary
+
+# Quartus II Generated files
+*.cdf
+*.cmp
+*.dpf
+*.eqn
+*.html
+*.jdi
+*.jpg
+*.log
+*.map
+*.pin
+*.ppf
+*.qws
+*.temp
+
+# Quartus II Backup files
+*.bak
+*.qar
+
+# Quartus II Exceptions
+!*.jic
+!*.pof
+!*.sof
