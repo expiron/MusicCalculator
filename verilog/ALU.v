@@ -8,13 +8,15 @@ module ALU(
 	output reg       co
 );
 
+/* Registers */
 	parameter OPT_NULL = 0, OPT_ADD = 1, OPT_SUB = 2, OPT_AND = 3, OPT_ORR = 4, OPT_CMP = 5;
-
+/* Wires */
 	wire[7:0] s1;
 	wire[7:0] ct1;
 	wire[7:0] s2;
 	wire[7:0] ct2;
 
+/* Instances of the full adder */
 	ALU_Adder ia0(.a(numa[0]), .b(numb[0]), .ci(ci),     .s(s1[0]), .co(ct1[0]));
 	ALU_Adder ia1(.a(numa[1]), .b(numb[1]), .ci(ct1[0]), .s(s1[1]), .co(ct1[1]));
 	ALU_Adder ia2(.a(numa[2]), .b(numb[2]), .ci(ct1[1]), .s(s1[2]), .co(ct1[2]));
@@ -24,6 +26,7 @@ module ALU(
 	ALU_Adder ia6(.a(numa[6]), .b(numb[6]), .ci(ct1[5]), .s(s1[6]), .co(ct1[6]));
 	ALU_Adder ia7(.a(numa[7]), .b(numb[7]), .ci(ct1[6]), .s(s1[7]), .co(ct1[7]));
 
+/* Instances of the full subtracter */
 	ALU_Subtracter is0(.a(numa[0]), .b(numb[0]), .ci(ci),     .s(s2[0]), .co(ct2[0]));
 	ALU_Subtracter is1(.a(numa[1]), .b(numb[1]), .ci(ct2[0]), .s(s2[1]), .co(ct2[1]));
 	ALU_Subtracter is2(.a(numa[2]), .b(numb[2]), .ci(ct2[1]), .s(s2[2]), .co(ct2[2]));
@@ -33,6 +36,7 @@ module ALU(
 	ALU_Subtracter is6(.a(numa[6]), .b(numb[6]), .ci(ct2[5]), .s(s2[6]), .co(ct2[6]));
 	ALU_Subtracter is7(.a(numa[7]), .b(numb[7]), .ci(ct2[6]), .s(s2[7]), .co(ct2[7]));
 
+/* Output */
 	always @ ( * ) begin
 		case (opt)
 			OPT_ADD: begin s <= s1;     co <= ct1[7]; end
@@ -44,10 +48,12 @@ module ALU(
 		endcase
 	end
 
+/* Zero Check */
 	assign zero = (~s[0] & ~s[1] & ~s[2] & ~s[3] & ~s[4] & ~s[5] & ~s[6] & ~s[7]);
 
 endmodule
 
+/* Module of Adder and Subtracter */
 module ALU_Adder(
 	input  a, b, ci,
 	output s, co

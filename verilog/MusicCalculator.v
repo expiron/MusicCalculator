@@ -12,6 +12,9 @@ module MusicCalculator(
 );
 
 	wire[3:0] num;
+	wire[3:0] num1;
+	wire[3:0] num2;
+	wire[3:0] num3;
 //	wire[2:0] opt;
 //	wire      numPressed;
 //	wire      optPressed;
@@ -30,13 +33,23 @@ module MusicCalculator(
 		.submit(submit)
 	);
 
+	InputRegister inputRegister(
+		.reset(reset),
+		.erase(submit),
+		.num(num),
+		.numPressed(numPressed),
+		.num1(num1),
+		.num2(num2),
+		.num3(num3),
+	);
+
 	DigitalLED # (.ledFreq(250)) digitalLED(
 		.clk(clk),
 		.reset(reset),
 		.num1(num),
-		.num2(num),
-		.num3(num),
-		.num4(num),
+		.num2(num1),
+		.num3(num2),
+		.num4(num3),
 		.com(com),
 		.seg(seg)
 	);

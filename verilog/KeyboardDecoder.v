@@ -10,8 +10,10 @@ module KeyboardDecoder(
 	output reg       submit
 );
 
+/* Wires */
 	wire     keyPressed;
 
+/* Instance of Universal Keyboard */
 	Keyboard # (.kbdFreq(50)) keyboard(
 		.clk(clk),
 		.reset(reset),
@@ -21,6 +23,7 @@ module KeyboardDecoder(
 		.keyPressed(keyPressed)
 	);
 
+/* Decode the code of the key */
 	always @ (keyPressed) begin
 		if (keyPressed)
 			case (num)
