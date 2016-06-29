@@ -33,15 +33,15 @@ module MusicCalculator(
 		.submit(submit)
 	);
 
-	InputRegister inputRegister(
-		.reset(reset),
-		.erase(submit),
-		.num(num),
-		.numPressed(numPressed),
-		.num1(num1),
-		.num2(num2),
-		.num3(num3),
-	);
+//	InputRegister inputRegister(
+//		.reset(reset),
+//		.erase(submit),
+//		.num(num),
+//		.numPressed(numPressed),
+//		.num1(num1),
+//		.num2(num2),
+//		.num3(num3),
+//	);
 
 	DigitalLED # (.ledFreq(250)) digitalLED(
 		.clk(clk),
