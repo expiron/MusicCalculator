@@ -4,21 +4,18 @@ module MusicCalculator(
 	input      [3:0] row,
 	output     [3:0] col,
 	output     [3:0] com,
-	output     [7:0] seg,
-	output     [2:0] opt,
-	output           numPressed,
-	output           optPressed,
-	output           submit
+	output     [7:0] seg
 );
 
 	wire[3:0] num;
 	wire[3:0] num1;
 	wire[3:0] num2;
 	wire[3:0] num3;
-//	wire[2:0] opt;
-//	wire      numPressed;
-//	wire      optPressed;
-//	wire      submit;
+	wire[3:0] num4;
+	wire[2:0] opt;
+	wire      numPressed;
+	wire      optPressed;
+	wire      submit;
 
 
 	KeyboardDecoder keyboard(
@@ -43,13 +40,31 @@ module MusicCalculator(
 //		.num3(num3),
 //	);
 
+		CU # (.workFreq(100)) controlUnit (
+		.clk(clk),
+		.reset(reset),
+		.num(num),
+		.numPressed(numPressed),
+		.opt(opt),
+		.optPressed(optPressed),
+		.submit(submit),
+		.num1(num1),
+		.num2(num2),
+		.num3(num3),
+		.num4(num4),
+		.sign(sign),
+		.cmpSign(cmpSign),
+		.clcCo(clcCo),
+		.clcZero(clcZero)
+	);
+
 	DigitalLED # (.ledFreq(250)) digitalLED(
 		.clk(clk),
 		.reset(reset),
-		.num1(num),
-		.num2(num1),
-		.num3(num2),
-		.num4(num3),
+		.num1(num1),
+		.num2(num2),
+		.num3(num3),
+		.num4(num4),
 		.com(com),
 		.seg(seg)
 	);

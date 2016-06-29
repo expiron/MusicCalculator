@@ -2,7 +2,7 @@ module ALU(
 	input      [2:0] opt,
 	input      [7:0] numa,
 	input      [7:0] numb,
-	input      [7:0] ci,
+	input            ci,
 	output reg [7:0] s,
 	output           zero,
 	output reg       co
