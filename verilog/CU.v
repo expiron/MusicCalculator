@@ -6,6 +6,7 @@ module CU(
 	input      [2:0] opt,
 	input            optPressed,
 	input            submit,
+	input            control,
 	output reg [3:0] num1,
 	output reg [3:0] num2,
 	output reg [3:0] num3,
@@ -13,7 +14,8 @@ module CU(
 	output reg       sign,
 	output           cmpSign,
 	output           clcZero,
-	output           clcCo
+	output           clcCo,
+	output reg       complete
 );
 
 /* Work Frequency of the CU */
@@ -219,6 +221,35 @@ module CU(
 //				end
 //			endcase
 //	end
+
+	always @ (posedge workClk) begin
+		if (!reset)
+			complete <= 0;
+		else
+			case (state)
+				S0: complete <= (control ? complete : 0);
+				S9: complete <= 1;
+				default: complete <= 0;
+			endcase
+//		if(!reset)
+//			complete <= 0;
+//		else
+//		case ({state,control,reset})
+//			6'b100111: complete <= 1;
+//			6'b000011: complete <= complete;
+//			default: complete <= 0;
+//		endcase
+//		if (!reset)
+//			complete <= 0;
+//		else
+//			if (!control)
+//				complete <= 0;
+//			else
+//				case (state)
+//					S0, S9:	complete <= 1;
+//					default:	complete <= complete;
+//				endcase
+	end
 
 	always @ (state or reset) begin
 		if (!reset) begin
