@@ -90,6 +90,8 @@ module CU_tst();
 
 	initial begin
 		#(period * 4);
+		PressNum(3,2);
+		PressNum(4,1);
 		PressOpt(1,1);
 		PressNum(3,2);
 		PressSubmit();

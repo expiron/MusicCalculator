@@ -4,7 +4,11 @@ module MusicCalculator(
 	input      [3:0] row,
 	output     [3:0] col,
 	output     [3:0] com,
-	output     [7:0] seg
+	output     [7:0] seg,
+	output           sign,
+	output           cmpSign,
+	output           clcZero,
+	output           clcCo
 );
 
 	wire[3:0] num;
@@ -40,7 +44,7 @@ module MusicCalculator(
 //		.num3(num3),
 //	);
 
-		CU # (.workFreq(100)) controlUnit (
+		CU # (.workFreq(2500)) controlUnit (
 		.clk(clk),
 		.reset(reset),
 		.num(num),

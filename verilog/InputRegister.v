@@ -31,10 +31,10 @@ module InputRegister(
 			temp[3] <= 0;
 			nbit <= 0;
 		end
-		else if (nbit < 3) begin
-			temp[1] <= num2;
-			temp[2] <= num3;
-			temp[3] <= num;
+		else if ((nbit < 3) && (num < 10)) begin
+			temp[1] <= (numPressed ? num2 : num1);
+			temp[2] <= (numPressed ? num3 : num2);
+			temp[3] <= (numPressed ? num  : num3);
 			nbit <= nbit + 1;
 		end
 	end

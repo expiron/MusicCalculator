@@ -27,13 +27,27 @@ module KeyboardDecoder(
 	always @ (keyPressed) begin
 		if (keyPressed)
 			case (num)
-			0,1,2,3,4,5,6,7,8,9: begin numPressed <= 1; opt <= 0; optPressed <= 0; submit <= 0; end
-			10:                  begin numPressed <= 0; opt <= 1; optPressed <= 1; submit <= 0; end
-			11:                  begin numPressed <= 0; opt <= 2; optPressed <= 1; submit <= 0; end
-			12:                  begin numPressed <= 0; opt <= 3; optPressed <= 1; submit <= 0; end
-			13:                  begin numPressed <= 0; opt <= 4; optPressed <= 1; submit <= 0; end
-			14:                  begin numPressed <= 0; opt <= 5; optPressed <= 1; submit <= 0; end
-			15:                  begin numPressed <= 0; opt <= 0; optPressed <= 0; submit <= 1; end
+				4'h0, 4'h1, 4'h2, 4'h3, 4'h4, 4'h5, 4'h6, 4'h7, 4'h8, 4'h9: begin
+					numPressed <= 1; opt <= 0; optPressed <= 0; submit <= 0;
+				end
+				4'ha: begin
+					numPressed <= 0; opt <= 1; optPressed <= 1; submit <= 0;
+				end
+				4'hb: begin
+					numPressed <= 0; opt <= 2; optPressed <= 1; submit <= 0;
+				end
+				4'hc: begin
+					numPressed <= 0; opt <= 3; optPressed <= 1; submit <= 0;
+				end
+				4'hd: begin
+					numPressed <= 0; opt <= 4; optPressed <= 1; submit <= 0;
+				end
+				4'he: begin
+					numPressed <= 0; opt <= 5; optPressed <= 1; submit <= 0;
+				end
+				4'hf: begin
+					numPressed <= 0; opt <= 0; optPressed <= 0; submit <= 1;
+				end
 			endcase
 		else begin
 			numPressed <= 0;
